@@ -10,6 +10,19 @@ Instructor::Instructor(int id)
 Instructor::Instructor(int id, const std::string& name) 
 	: id{id}, name{name} { }
 
+Instructor::Instructor(const Instructor& other)
+    : id{ other.id }, name{ other.name } {
+    for (auto student : other.courses) {
+        courses.push_back(student);
+    }
+}
+
+Instructor::Instructor(Instructor&& other) 
+    : id{ other.id }, name{ std::move(other.name) } {
+    courses = std::move(other.courses);
+    other.id = 0;
+}
+
 void Instructor::assignCourse(Course* course) {
     auto it = std::find(courses.begin(), courses.end(), course);
     if (it == courses.end()) {

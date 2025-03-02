@@ -20,6 +20,8 @@ public:
 	Student(int id);
 	Student(int id, const std::string& firstName, const std::string& lastName);
 	Student(int id, const std::string& firstName, const std::string& lastName, int age);
+	Student(const Student& other);
+	Student(Student&& other);
 	~Student();
 	void registerCourse(Course* course);
 	void withdrawCourse(Course* course);

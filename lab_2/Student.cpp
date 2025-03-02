@@ -13,6 +13,21 @@ Student::Student(int id, const std::string& firstName, const std::string& lastNa
 Student::Student(int id, const std::string& firstName, const std::string& lastName, int age) :
 	id{id}, firstName{firstName}, lastName{lastName}, age{age} { }
 
+Student::Student(const Student& other)
+    : id{ other.id }, firstName{ other.firstName }, lastName{ other.lastName }, age{ other.age } {
+    for (auto course : other.courses) {
+        courses.push_back(course);
+    }
+}
+
+Student::Student(Student&& other) 
+    : id{ other.id }, firstName{ std::move(other.firstName) }, lastName{ std::move(other.lastName) }, age{ other.age } {
+    courses = std::move(other.courses);
+    other.id = 0;
+    other.age = 0;
+    other.courses.clear();
+}
+
 Student::~Student() { }
 
 void Student::printInfo() const {

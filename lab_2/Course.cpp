@@ -13,6 +13,19 @@ Course::Course(int id)
 Course::Course(int id, const std::string& name, const std::string& instructor) 
 	: id{id}, name{name}, instructor{instructor} { }
 
+Course::Course(const Course& other)
+    : id{ other.id }, name{ other.name }, instructor{ other.instructor } {
+    for (auto student : other.students) {
+        students.push_back(student);
+    }
+}
+
+Course::Course(Course&& other) 
+    : id{ other.id }, name{ std::move(other.name) }, instructor{ std::move(other.instructor) } {
+    students = std::move(other.students);
+    other.id = 0;
+}
+
 Course::~Course() { }
 
 void Course::addStudent(Student* student) {

@@ -19,6 +19,8 @@ public:
 	Course(int id);
 	Course(int id, const std::string& name);
 	Course(int id, const std::string& name, const std::string& instructor);
+	Course(const Course& other);
+	Course(Course&& other);
 	~Course();
 	void addStudent(Student* student);
 	void removeStudent(Student* student);

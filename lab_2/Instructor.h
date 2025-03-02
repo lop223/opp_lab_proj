@@ -17,6 +17,8 @@ public:
 	Instructor();
 	Instructor(int id);
 	Instructor(int id, const std::string& name);
+	Instructor(const Instructor& other);
+	Instructor(Instructor&& other);
 	void assignCourse(Course* course);
 	std::vector<Course*> getCourses() const { return courses; }
 };
