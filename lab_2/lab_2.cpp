@@ -22,6 +22,9 @@ int main()
     students.push_back(new Student("Yulia", "Timoshenko", 24));
     students.push_back(new Student("Vladimir", "Pushkin", 25));
     students.push_back(new Student("Ekaterina", "Baranova", 26));
+    students[0]->setAge(32);
+    students[1]->setAge(32);
+    students[1]->setName("Andrew", "Paushac");
     std::vector<Course*> courses;
     courses.push_back(new Course("Math", "Mr. Bush"));
     courses.push_back(new Course("Physics", "Mr. Smith"));

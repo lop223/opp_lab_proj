@@ -31,6 +31,8 @@ public:
 	std::string getName() const;
 	int getId() const { return id; }
 	static int getStudentCount();
+	Student& setAge(int newAge);
+	Student& setName(const std::string& firstName, const std::string& lastName);
 };
 
 #endif

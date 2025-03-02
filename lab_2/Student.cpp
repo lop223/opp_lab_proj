@@ -67,3 +67,15 @@ void Student::withdrawCourse(Course* course) {
 int Student::getStudentCount() {
     return studentCount;
 }
+
+Student& Student::setAge(int age) {
+    if (17 < age < 50) {
+        this->age = age;
+    }
+    return *this;
+}
+Student& Student::setName(const std::string& firstName, const std::string& lastName) {
+    this->firstName = firstName;
+    this->lastName = lastName;
+    return *this;
+}
