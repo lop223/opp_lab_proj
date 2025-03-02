@@ -15,11 +15,12 @@ private:
 	std::string lastName;
 	int age;
 	std::vector<Course*> courses;
+
+	static int studentCount;
 public:
 	Student();
-	Student(int id);
-	Student(int id, const std::string& firstName, const std::string& lastName);
-	Student(int id, const std::string& firstName, const std::string& lastName, int age);
+	Student(const std::string& firstName, const std::string& lastName);
+	Student(const std::string& firstName, const std::string& lastName, int age);
 	Student(const Student& other);
 	Student(Student&& other);
 	~Student();
@@ -29,6 +30,7 @@ public:
 	void printInfo() const;
 	std::string getName() const;
 	int getId() const { return id; }
+	static int getStudentCount();
 };
 
 #endif

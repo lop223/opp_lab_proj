@@ -14,11 +14,12 @@ private:
 	std::string name;
 	std::string instructor;
 	std::vector<Student*> students;
+
+	static int courseCount;
 public:
 	Course();
-	Course(int id);
-	Course(int id, const std::string& name);
-	Course(int id, const std::string& name, const std::string& instructor);
+	Course(const std::string& name);
+	Course(const std::string& name, const std::string& instructor);
 	Course(const Course& other);
 	Course(Course&& other);
 	~Course();
@@ -26,6 +27,7 @@ public:
 	void removeStudent(Student* student);
 	std::vector<Student*> getStudents() const { return students; }
 	void showAllStudents();
+	static int getCourseCount();
 };
 
 #endif 

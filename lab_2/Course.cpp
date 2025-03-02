@@ -1,32 +1,38 @@
 #include "Course.h"
 
+int Course::courseCount = 0;
+
 Course::Course()
-	: Course(0, "None", "None") { }
+	: Course("None", "None") { }
 
-Course::Course(int id, const std::string& name)
-	: Course(id, name, "None") { }
+Course::Course(const std::string& name)
+	: Course(name, "None") { }
 
-Course::Course(int id)
-    : Course(id, "None", "None") {
+
+
+Course::Course(const std::string& name, const std::string& instructor) 
+	: id{courseCount}, name{name}, instructor{instructor} {
+    ++courseCount;
 }
 
-Course::Course(int id, const std::string& name, const std::string& instructor) 
-	: id{id}, name{name}, instructor{instructor} { }
-
 Course::Course(const Course& other)
-    : id{ other.id }, name{ other.name }, instructor{ other.instructor } {
+    : id{ courseCount }, name{ other.name }, instructor{ other.instructor } {
     for (auto student : other.students) {
         students.push_back(student);
     }
+    ++courseCount;
 }
 
 Course::Course(Course&& other) 
-    : id{ other.id }, name{ std::move(other.name) }, instructor{ std::move(other.instructor) } {
+    : id{ courseCount }, name{ std::move(other.name) }, instructor{ std::move(other.instructor) } {
     students = std::move(other.students);
     other.id = 0;
+    ++courseCount;
 }
 
-Course::~Course() { }
+Course::~Course() {
+    --courseCount;
+}
 
 void Course::addStudent(Student* student) {
     auto it = std::find(students.begin(), students.end(), student);
@@ -55,4 +61,8 @@ void Course::showAllStudents() {
         std::cout << student->getName() << ", ";
     }
     std::cout << "." << std::endl;
+}
+
+int Course::getCourseCount() {
+    return courseCount;
 }

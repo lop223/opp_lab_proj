@@ -1,23 +1,24 @@
 #include "Student.h"
 
+int Student::studentCount = 0;
 
 Student::Student()
-	: Student(0, "None", "None", 0) { }
+	: Student("None", "None", 0) { }
 
-Student::Student(int id)
-    : Student(id, "None", "None", 0) { }
+Student::Student(const std::string& firstName, const std::string& lastName)
+    : Student(firstName, lastName, 0) { }
 
-Student::Student(int id, const std::string& firstName, const std::string& lastName)
-	: Student(id, firstName, lastName, 0) { }
-
-Student::Student(int id, const std::string& firstName, const std::string& lastName, int age) :
-	id{id}, firstName{firstName}, lastName{lastName}, age{age} { }
+Student::Student(const std::string& firstName, const std::string& lastName, int age) :
+	id{studentCount}, firstName{firstName}, lastName{lastName}, age{age} {
+    ++studentCount;
+}
 
 Student::Student(const Student& other)
     : id{ other.id }, firstName{ other.firstName }, lastName{ other.lastName }, age{ other.age } {
     for (auto course : other.courses) {
         courses.push_back(course);
     }
+    ++studentCount;
 }
 
 Student::Student(Student&& other) 
@@ -26,9 +27,12 @@ Student::Student(Student&& other)
     other.id = 0;
     other.age = 0;
     other.courses.clear();
+    ++studentCount;
 }
 
-Student::~Student() { }
+Student::~Student() {
+    --studentCount;
+}
 
 void Student::printInfo() const {
 	std::cout << id << " - Student: " << firstName << " " << lastName << ", age: " << age << "." << std::endl;
@@ -58,4 +62,8 @@ void Student::withdrawCourse(Course* course) {
         std::cout << "There is no such course!" << std::endl;
         course->removeStudent(this);
     }
+}
+
+int Student::getStudentCount() {
+    return studentCount;
 }

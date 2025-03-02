@@ -1,26 +1,32 @@
 #include "Instructor.h"
 
+int Instructor::instructorCount = 0;
+
 Instructor::Instructor()
-	: Instructor(0, "None") { }
+	: Instructor("None") { }
 
-Instructor::Instructor(int id)
-	: Instructor(id, "None") {
+Instructor::Instructor(const std::string& name) 
+	: id{instructorCount}, name{name} {
+    ++instructorCount;
 }
-
-Instructor::Instructor(int id, const std::string& name) 
-	: id{id}, name{name} { }
 
 Instructor::Instructor(const Instructor& other)
     : id{ other.id }, name{ other.name } {
     for (auto student : other.courses) {
         courses.push_back(student);
     }
+    ++instructorCount;
 }
 
 Instructor::Instructor(Instructor&& other) 
     : id{ other.id }, name{ std::move(other.name) } {
     courses = std::move(other.courses);
     other.id = 0;
+    ++instructorCount;
+}
+
+Instructor::~Instructor() {
+    --instructorCount;
 }
 
 void Instructor::assignCourse(Course* course) {
@@ -31,4 +37,8 @@ void Instructor::assignCourse(Course* course) {
     else {
         std::cout << "This course is already assigned!" << std::endl;
     }
+}
+
+int Instructor::getInstructorCount() {
+    return instructorCount;
 }
