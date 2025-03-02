@@ -22,9 +22,10 @@ int main()
     students.push_back(new Student("Yulia", "Timoshenko", 24));
     students.push_back(new Student("Vladimir", "Pushkin", 25));
     students.push_back(new Student("Ekaterina", "Baranova", 26));
+
     students[0]->setAge(32);
-    students[1]->setAge(32);
-    students[1]->setName("Andrew", "Paushac");
+    students[1]->setAge(32).setName("Andrew", "Paushac");
+
     std::vector<Course*> courses;
     courses.push_back(new Course("Math", "Mr. Bush"));
     courses.push_back(new Course("Physics", "Mr. Smith"));
@@ -37,8 +38,6 @@ int main()
 
     std::cout << "Student count: " << Student::getStudentCount() << std::endl;
 
-
-
     courses[0]->addStudent(students[0]);
     courses[0]->addStudent(students[3]);
     courses[0]->addStudent(students[5]);
@@ -48,6 +47,14 @@ int main()
     for (Student* student : students) {
         student->printInfo();
     }
+    std::cout << std::endl;
+
+    std::cout << ++(*students[0]) << std::endl;
+    std::cout << --(*students[1]) << std::endl;
+    std::cout << (*students[2]) + (*students[3]) << std::endl;
+    std::cout << ((*students[3]) == (*students[4]) ? "Equal" : "Not equal") << std::endl;
+    *students[5] = Student(*students[6]);
+    std::cout << ((*students[5]) == (*students[6]) ? "Equal" : "Not equal") << std::endl;
     std::cout << std::endl;
 
     courses[0]->showAllStudents();
