@@ -30,3 +30,7 @@ Employee::Employee(Employee&& other)
 Employee::~Employee() {
 	employeeCount--;
 }
+
+void Employee::setSalary(int amount) {
+	salary = amount;
+}

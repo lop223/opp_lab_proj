@@ -4,13 +4,12 @@
 #include<iostream>
 #include"Person.h"
 
-class Employee : public Person
+class Employee : protected Person
 {
-private:
-	static int employeeCount;
 protected:
 	std::string position;
 	int salary;
+	static int employeeCount;
 public:
 	Employee();
 	Employee(const std::string& firstName, const std::string& lastName, int age);
@@ -18,6 +17,7 @@ public:
 	Employee(const Employee& other);
 	Employee(Employee&& other);
 	~Employee();
+	void setSalary(int amount);
 };
 
 #endif

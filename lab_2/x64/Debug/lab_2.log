@@ -1,3 +1,6 @@
-﻿  Student.cpp
-D:\Projects\С++\Labs\second\opp_lab_proj\lab_2\Student.cpp(77,12): warning C4804: <: небезопасное использование типа "bool" в операции
+﻿  Administrator.cpp
+  Employee.cpp
+  Instructor.cpp
+  lab_2.cpp
+  Создание кода...
   lab_2.vcxproj -> D:\Projects\С++\Labs\second\opp_lab_proj\x64\Debug\lab_2.exe
