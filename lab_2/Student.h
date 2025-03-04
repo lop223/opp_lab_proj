@@ -3,30 +3,28 @@
 
 #include<iostream>
 #include <vector>
-#include"Course.h"
+#include"Person.h"
 
 class Course;
 
-class Student
+class Student: public Person
 {
 private:
-	int id;
-	std::string firstName;
-	std::string lastName;
-	int age;
 	std::vector<Course*> courses;
+	int major;
 
 	static int studentCount;
 public:
 	Student();
 	Student(const std::string& firstName, const std::string& lastName);
 	Student(const std::string& firstName, const std::string& lastName, int age);
+	Student(const std::string& firstName, const std::string& lastName, int age, int major);
 	Student(const Student& other);
 	Student(Student&& other);
 	~Student();
 
 	Student& operator++() {
-		++age;
+		++Person::age;
 		return *this;
 	}
 	Student& operator--() {
@@ -40,23 +38,19 @@ public:
 		return firstName == other.firstName && lastName == other.lastName && age == other.age;
 	}
 	friend std::ostream& operator<<(std::ostream& os, const Student& student) {
-		os << "ID: " << student.id << ", Name: " << student.firstName << " " << student.lastName << ", Age: " << student.age;
+		os << "ID: " << student.id << ", Name: " << student.firstName << " " << student.lastName << ", Age: " << student.age
+			<< ", Major: " << student.major;
 		return os;
 	}
 	Student& operator=(const Student& other) {
-		if (this == &other) return *this; // захист від самоприсвоєння
+		if (this == &other) return *this;
 
-		// Очищаємо поточний стан
 		firstName = other.firstName;
 		lastName = other.lastName;
 		age = other.age;
-
-		// Очищаємо старі курси
 		courses.clear();
-
-		// Копіюємо нові курси
 		for (const auto& course : other.courses) {
-			courses.push_back(course); // Пряме копіювання курсу
+			courses.push_back(course);
 		}
 
 		return *this;
@@ -65,7 +59,7 @@ public:
 	void registerCourse(Course* course);
 	void withdrawCourse(Course* course);
 	std::vector<Course*> getCourses() const { return courses; };
-	void printInfo() const;
+	void printInfo() const override;
 	std::string getName() const;
 	int getId() const { return id; }
 	static int getStudentCount();

@@ -3,15 +3,18 @@
 int Instructor::instructorCount = 0;
 
 Instructor::Instructor()
-	: Instructor("None") { }
+	: Instructor("None", "None", 0, 0) { }
 
-Instructor::Instructor(const std::string& name) 
-	: id{instructorCount}, name{name} {
+Instructor::Instructor(const std::string& firstName, const std::string& lastName)
+    : Instructor(firstName, lastName, 0, 0) { }
+
+Instructor::Instructor(const std::string& firstName, const std::string& lastName, int age, int salary)
+    : Employee{ firstName, lastName, age, "instructor", salary} {
     ++instructorCount;
 }
 
 Instructor::Instructor(const Instructor& other)
-    : id{ other.id }, name{ other.name } {
+    : Employee{ other } {
     for (auto student : other.courses) {
         courses.push_back(student);
     }
@@ -19,9 +22,8 @@ Instructor::Instructor(const Instructor& other)
 }
 
 Instructor::Instructor(Instructor&& other) 
-    : id{ other.id }, name{ std::move(other.name) } {
+    : Employee{ other } {
     courses = std::move(other.courses);
-    other.id = 0;
     ++instructorCount;
 }
 

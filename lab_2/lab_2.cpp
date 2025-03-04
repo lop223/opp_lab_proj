@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include<vector>
+#include"Person.h"
 #include"Student.h"
 #include"Instructor.h"
 #include"Course.h"
@@ -7,25 +8,21 @@
 int main()
 {
     std::vector<Instructor*> instructors;
-    instructors.push_back(new Instructor("Mr. Bush"));
-    instructors.push_back(new Instructor("Mr. Smith"));
-    instructors.push_back(new Instructor("Mr. Stark"));
-    instructors.push_back(new Instructor("Mr. Black"));
+    instructors.push_back(new Instructor("Sarra","Bush", 30, 10000));
+    instructors.push_back(new Instructor("Tom", "Smith", 29, 10000));
+    instructors.push_back(new Instructor("Ben", "Stark", 31, 10000));
+    instructors.push_back(new Instructor("Andrew", "Black", 30, 10000));
 	std::vector<Student*> students;
-    students.push_back(new Student("Maksum", "Dolhiy", 17));
-    students.push_back(new Student("Anna", "Petrova", 18));
-    students.push_back(new Student("Igor", "Shevchenko", 19));
-    students.push_back(new Student("Olga", "Kovalenko", 20));
-    students.push_back(new Student("Dmitriy", "Ivanov", 21));
-    students.push_back(new Student("Svetlana", "Zhuk", 22));
-    students.push_back(new Student("Alexey", "Semenov", 23));
-    students.push_back(new Student("Yulia", "Timoshenko", 24));
-    students.push_back(new Student("Vladimir", "Pushkin", 25));
-    students.push_back(new Student("Ekaterina", "Baranova", 26));
-
-    students[0]->setAge(32);
-    students[1]->setAge(32).setName("Andrew", "Paushac");
-
+    students.push_back(new Student("Maksum", "Dolhiy", 17, 121));
+    students.push_back(new Student("Anna", "Petrova", 18, 123));
+    students.push_back(new Student("Igor", "Shevchenko", 19, 141));
+    students.push_back(new Student("Olga", "Kovalenko", 20, 141));
+    students.push_back(new Student("Dmitriy", "Ivanov", 21, 123));
+    students.push_back(new Student("Svetlana", "Zhuk", 22, 141));
+    students.push_back(new Student("Alexey", "Semenov", 23, 152));
+    students.push_back(new Student("Yulia", "Timoshenko", 24, 141));
+    students.push_back(new Student("Vladimir", "Pushkin", 25, 152));
+    students.push_back(new Student("Ekaterina", "Baranova", 26, 152));
     std::vector<Course*> courses;
     courses.push_back(new Course("Math", "Mr. Bush"));
     courses.push_back(new Course("Physics", "Mr. Smith"));
@@ -36,30 +33,15 @@ int main()
     courses.push_back(new Course("Literature", "Mr. Stark"));
     courses.push_back(new Course("Art", "Mr. Black"));
 
-    std::cout << "Student count: " << Student::getStudentCount() << std::endl;
+    for (Student* student : students) {
+        student->printInfo();
+    }
 
     courses[0]->addStudent(students[0]);
     courses[0]->addStudent(students[3]);
     courses[0]->addStudent(students[5]);
     courses[0]->addStudent(students[7]);
     courses[0]->addStudent(students[9]);
-
-    for (Student* student : students) {
-        student->printInfo();
-    }
-    std::cout << std::endl;
-
-    std::cout << ++(*students[0]) << std::endl;
-    std::cout << --(*students[1]) << std::endl;
-    std::cout << (*students[2]) + (*students[3]) << std::endl;
-    std::cout << ((*students[3]) == (*students[4]) ? "Equal" : "Not equal") << std::endl;
-    *students[5] = Student(*students[6]);
-    std::cout << ((*students[5]) == (*students[6]) ? "Equal" : "Not equal") << std::endl;
-    std::cout << std::endl;
-
-    courses[0]->showAllStudents();
-
-
 
     for (Student* student : students) {
         delete student;

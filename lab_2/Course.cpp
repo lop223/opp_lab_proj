@@ -1,4 +1,5 @@
-#include "Course.h"
+#include"Course.h"
+#include"Student.h"
 
 int Course::courseCount = 0;
 
