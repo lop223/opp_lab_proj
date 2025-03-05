@@ -44,3 +44,8 @@ void Instructor::assignCourse(Course* course) {
 int Instructor::getInstructorCount() {
     return instructorCount;
 }
+
+void Instructor::printInfo_() const {
+    std::cout << id << " - Employee: " << firstName << " " << lastName << ", age: " << age << ", position: "
+        << position << ", salary: " << salary << "." << std::endl;
+}

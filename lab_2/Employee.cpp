@@ -34,3 +34,5 @@ Employee::~Employee() {
 void Employee::setSalary(int amount) {
 	salary = amount;
 }
+
+void Employee::printInfo_() const {}

@@ -17,3 +17,8 @@ void Administrator::setEmployeeSalary(Employee* employee, int amount) {
 		employee->setSalary(amount);
 	}
 }
+
+void Administrator::printInfo_() const {
+	std::cout << id << " - Employee: " << firstName << " " << lastName << ", age: " << age << ", position: " 
+		<< position << ", salary: " << salary << "." << std::endl;
+}

@@ -18,6 +18,7 @@ public:
 	Employee(Employee&& other);
 	~Employee();
 	void setSalary(int amount);
+	virtual void printInfo_() const;
 };
 
 #endif

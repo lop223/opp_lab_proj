@@ -4,14 +4,21 @@
 #include"Student.h"
 #include"Instructor.h"
 #include"Course.h"
+#include"Administrator.h"
+#include"Staff.h"
 
 int main()
 {
-    std::vector<Instructor*> instructors;
-    instructors.push_back(new Instructor("Sarra","Bush", 30, 10000));
-    instructors.push_back(new Instructor("Tom", "Smith", 29, 10000));
-    instructors.push_back(new Instructor("Ben", "Stark", 31, 10000));
-    instructors.push_back(new Instructor("Andrew", "Black", 30, 10000));
+    std::vector<Employee*> employees;
+    employees.push_back(new Instructor("Sarra","Bush", 30, 10000));
+    employees.push_back(new Instructor("Tom", "Smith", 29, 10000));
+    employees.push_back(new Staff("Lisa", "Green", 30, 7000, 2));
+    employees.push_back(new Administrator("Maksum", "Prat", 30, 15000));
+    employees.push_back(new Staff("Solomy", "Brown", 30, 7000, 3));
+    employees.push_back(new Instructor("Ben", "Stark", 31, 10000));
+    employees.push_back(new Instructor("Andrew", "Black", 30, 10000));
+    employees.push_back(new Administrator("Jon", "Sally", 30, 15000));
+    employees.push_back(new Staff("Adelina", "Green", 30, 7000, 1));
 	std::vector<Student*> students;
     students.push_back(new Student("Maksum", "Dolhiy", 17, 121));
     students.push_back(new Student("Anna", "Petrova", 18, 123));
@@ -37,6 +44,12 @@ int main()
         student->printInfo();
     }
 
+    std::cout << std::endl;
+
+    for (Employee* employee : employees) {
+        employee->printInfo_();
+    }
+
     courses[0]->addStudent(students[0]);
     courses[0]->addStudent(students[3]);
     courses[0]->addStudent(students[5]);
@@ -49,7 +62,7 @@ int main()
     for (Course* course : courses) {
         delete course;
     }
-    for (Instructor* instructor : instructors) {
-        delete instructor;
+    for (Employee* employee : employees) {
+        delete employee;
     }
 }

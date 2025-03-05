@@ -21,6 +21,7 @@ public:
 	~Instructor();
 	void assignCourse(Course* course);
 	std::vector<Course*> getCourses() const { return courses; }
+	void printInfo_() const override;
 
 	int static getInstructorCount();
 };

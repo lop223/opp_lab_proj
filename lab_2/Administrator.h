@@ -12,6 +12,7 @@ public:
 	Administrator(const std::string& firstName, const std::string& lastName, int age, int salary);
 	~Administrator();
 	void setEmployeeSalary(Employee* employee, int amount);
+	void printInfo_() const override;
 };
 
 #endif
